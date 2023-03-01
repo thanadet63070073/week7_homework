@@ -1,0 +1,16 @@
+# your Home work
+pipeline {
+    agent any
+    parameters {
+        string(name: 'NAME', defaultValue: 'Alice', description: 'Enter your name')
+        string(name: 'Ages', defaultValue: '21', description: 'Enter your age')
+    }
+    stages {
+        stage('Example') {
+            steps {
+                echo "Name: ${params.NAME} --${params.Ages}"
+                
+            }
+        }
+    }
+}
