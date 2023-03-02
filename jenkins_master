@@ -12,10 +12,11 @@ pipeline {
             steps {
                 script{
                     def data = readJSON file: "data.json"
-                    println(data.name)
+                    env.name = data.name
+                    env.age = data.age
                 }
                 echo 'Start Trigger to send name and age to slave'
-                build job: 'slave', parameters: [string(name: 'NAME', value: data.name), string(name: 'Ages', value: data.age)]
+                build job: 'slave', parameters: [string(name: 'NAME', value: "$name"), string(name: 'Ages', value: "$age")]
             }
         }
     }
