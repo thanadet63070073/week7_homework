@@ -11,7 +11,7 @@ pipeline {
         stage('Tigger the Slave Jobs') {
             steps {
                 script{
-                    def data = readJSON file: './data.json'
+                    def data = readJSON file: "${env.WORKSPACE}\\data.json"
                     println(data.name)
                 }
                 echo 'Start Trigger to send name and age to slave'
