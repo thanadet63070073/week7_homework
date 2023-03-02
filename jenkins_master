@@ -3,10 +3,6 @@ pipeline {
 
     stages {
         stage('Welcome to master'){
-            script {
-                def name = readJSON file: 'data.json'
-                println(name)
-            }
             steps{
                 echo 'Start Program'
             }
@@ -14,6 +10,10 @@ pipeline {
 
         stage('Tigger the Slave Jobs') {
             steps {
+                script{
+                    def name = readJSON file: 'data.json'
+                    println(name)
+                }
                 echo 'Start Trigger to send name and age to slave'
                 build job: 'slave', parameters: [string(name: 'NAME', value: 'Alice'), string(name: 'Ages', value: '21')]
             }
